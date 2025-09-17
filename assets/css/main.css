@@ -1,15 +1,4 @@
-/**
-* Template Name: Selecao
-* Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -39,6 +28,59 @@
 
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+.feature-list {
+  list-style: none;             /* hilangkan bullet default */
+  padding-left: 0;              /* rapat ke kiri */
+  counter-reset: item;          /* reset counter */
+}
+
+.feature-list li {
+  display: flex;                /* angka dan teks sejajar */
+  align-items: flex-start;      /* teks awalnya sejajar atas angka */
+  margin-bottom: 0.75rem;
+}
+
+.feature-list li::before {
+  counter-increment: item;      
+  content: counter(item) ".";   /* munculkan angka */
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #002366;
+  margin-right: 0.75rem;        /* jarak angka–teks */
+  flex-shrink: 0;               /* angka tidak mengecil */
+  line-height: 1.5rem;
+}
+
+.feature-list li {
+  font-size: 1rem; /* ukuran teks */
+  line-height: 1.5rem;
+  
+}
+
+.sublist {
+  list-style: none;           /* hilangkan bullet */
+  margin-left: 1.5em;         /* indent */
+  padding-left: 0;
+}
+
+.sublist li {
+  display: block;             /* turun baris */
+  font-size: 0.95rem;
+}
+
+/* Responsif: angka tetap proporsional di HP */
+@media (max-width: 576px) {
+  .feature-list li::before {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+  }
+  .feature-list li {
+    font-size: 0.95rem;
+  }
+}
+
+
 
 .light-background {
   --background-color: #f9f9f9;
@@ -1807,32 +1849,66 @@ section,
 /*--------------------------------------------------------------
 # Team Section
 --------------------------------------------------------------*/
-.team .team-member {
-  background-color: var(--surface-color);
+/* Card team member */
+.team-member {
+  background-color: var(--surface-color, #fff);
   overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  height: 100%;
-}
-.team-member .member-img img {
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 300px; /* atur tinggi sesuai kebutuhan */
-  object-fit: cover; /* agar gambar proporsional tanpa gepeng */
-  border-radius: 0;  /* hilangkan efek bulat */
 }
 
-.team-member .member-img img {
-  width: 100%;
-  aspect-ratio: 3/4; /* perbandingan 3:4, cocok buat foto portrait */
-  object-fit: cover;
-  border-radius: 0;
-}
-
-
-.team .team-member .member-img {
+/* Container foto */
+.team-member .member-img {
   position: relative;
+  width: 100%;
+  aspect-ratio: 3/4; /* default desktop */
   overflow: hidden;
 }
+
+/* Foto */
+.team-member .member-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Info */
+.team-member .member-info {
+  padding: 10px; /* kecilkan padding agar card lebih pendek */
+  text-align: center;
+}
+
+.team-member .member-info h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.team-member .member-info span {
+  font-size: 0.85rem;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  /* foto lebih pendek lagi */
+  .team-member .member-img {
+    aspect-ratio: 3/3; /* lebih pendek di mobile */
+  }
+  .team-member .member-info {
+    padding: 6px 8px; /* makin kecil padding */
+  }
+  .team-member .member-info h4 {
+    font-size: 0.9rem;
+  }
+  .team-member .member-info span {
+    font-size: 0.75rem;
+  }
+}
+
+
 
 .team .team-member .social {
   position: absolute;
